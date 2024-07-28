@@ -5,8 +5,8 @@ Hello! :wave: I present you my own Neovim configuration written entirely in Lua 
 I have learned by reading the [official documentation](https://neovim.io/doc/user/) :bookmark_tabs: and looking at configurations from other people who already know how to use it to see how they do it.
 
 ## :star2: Previews
-![Neovim](screenshots/Screenshot_1.png)
-![Neovim](screenshots/Screenshot_2.png)
+![Neovim](screenshots/screenshot_01.png)
+![Neovim](screenshots/screenshot_02.png)
 
 ## :zap: Requirements
 
