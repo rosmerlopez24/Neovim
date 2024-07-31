@@ -39,6 +39,7 @@ require("lazy").setup({
     -- try to load one of these colorschemes when starting an installation during startup
     colorscheme = { "habamax" },
   },
+  pkg = { enabled = false },
   rocks = { enabled = false },
   ui = {
     -- a number <1 is a percentage., >1 is a fixed size
