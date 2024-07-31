@@ -143,18 +143,10 @@ function M.setup()
   require("rvim.core.lazy")
 
   -- Setup colorscheme
-  require("lazy.core.util").try(function()
-    if RVimOptions.colorscheme == "material" then
-      vim.g.material_style = RVimOptions.style
-    end
-    vim.cmd.colorscheme(RVimOptions.colorscheme)
-  end, {
-    msg = "Could not load your colorscheme",
-    on_error = function(msg)
-      require("lazy.core.util").error(msg)
-      vim.cmd.colorscheme("habamax")
-    end,
-  })
+  if RVimOptions.colorscheme == "material" then
+    vim.g.material_style = RVimOptions.style
+  end
+  vim.cmd.colorscheme(RVimOptions.colorscheme)
 end
 
 return M
