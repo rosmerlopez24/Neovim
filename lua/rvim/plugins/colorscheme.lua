@@ -141,7 +141,8 @@ return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    lazy = true,
+    lazy = RVimOptions.colorscheme ~= "rose-pine",
+    priority = 1000,
     opts = {
       --- @usage 'auto'|'main'|'moon'|'dawn'
       variant = RVimOptions.style,
@@ -206,7 +207,8 @@ return {
   {
     "navarasu/onedark.nvim",
     name = "onedark",
-    lazy = true,
+    lazy = RVimOptions.colorscheme ~= "onedark",
+    priority = 1000,
     opts = {
       -- Main options --
       style = RVimOptions.style, -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
@@ -255,9 +257,11 @@ return {
       },
     },
   },
+
   -- A Neovim colorscheme based on Nord, but Aurora > Frost.
   {
     "AlexvZyl/nordic.nvim",
+    name = "nordic",
     lazy = RVimOptions.colorscheme ~= "nordic",
     priority = 1000,
     opts = {
