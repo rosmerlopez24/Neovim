@@ -32,7 +32,15 @@ require("lazy").setup({
     -- when running inside vscode for example
   },
   -- leave nil when passing the spec as the first argument to setup()
-  spec = { import = "rvim.plugins" },
+  spec = {
+    { import = "rvim.plugins.coding" },
+    { import = "rvim.plugins.colorscheme" },
+    { import = "rvim.plugins.editor" },
+    { import = "rvim.plugins.formatting" },
+    { import = "rvim.plugins.lspconfig" },
+    { import = "rvim.plugins.treesitter" },
+    { import = "rvim.plugins.ui" },
+  },
   install = {
     -- install missing plugins on startup. This doesn't increase startup time.
     missing = true,
