@@ -122,6 +122,7 @@ return {
   -- https://github.com/uloco/bluloco.nvim
   {
     "uloco/bluloco.nvim",
+    name = "bluloco",
     lazy = RVimOptions.colorscheme ~= "bluloco",
     priority = 1000,
     dependencies = { "rktjmp/lush.nvim" },
