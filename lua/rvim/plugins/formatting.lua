@@ -11,7 +11,7 @@ return {
     -- Define your formatters
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "black", "isort" },
+      python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
       -- Use the "*" filetype to run formatters on all filetypes.
       ["*"] = { "codespell" },
       -- Use the "_" filetype to run formatters on filetypes that don't
