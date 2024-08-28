@@ -38,6 +38,10 @@ return {
           },
         },
       },
+      -- Enable lsp cursor word highlighting
+      document_highlight = {
+        enabled = true,
+      },
       -- Add any global capabilities here
       ---@type table
       capabilities = {
@@ -59,6 +63,7 @@ return {
       -- Setup Lsp
       require("rvim.util").lsp.setup()
       require("rvim.util").lsp.on_dynamic_capability(require("rvim.util").lsp.default_mappings)
+      require("rvim.util").lsp.words.setup(opts.document_highlight)
 
       -- Setup diagnostics signs
       for severity, icon in pairs(opts.diagnostics.signs.text) do

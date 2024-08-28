@@ -23,4 +23,10 @@ function M.confirm(opts)
   end
 end
 
+function M.visible()
+  ---@module 'cmp'
+  local cmp = package.loaded["cmp"]
+  return cmp and cmp.core.view:visible()
+end
+
 return M
