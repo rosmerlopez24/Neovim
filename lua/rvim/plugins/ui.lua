@@ -1,4 +1,76 @@
 return {
+  -- A snazzy buffer line (with tabpage integration) for Neovim built using lua.
+  {
+    "akinsho/bufferline.nvim",
+    event = "VeryLazy",
+    version = "*",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      local style_preset = require("bufferline").style_preset.no_italic
+      require("bufferline").setup({
+        options = {
+          mode = "buffers", -- set to "tabs" to only show tabpages instead
+          style_preset = style_preset, -- or bufferline.style_preset.minimal,
+          themable = true, -- allows highlight groups to be overriden i.e. sets highlights as default
+          numbers = "none",
+          close_command = nil, -- can be a string | function, | false see "Mouse actions"
+          right_mouse_command = nil, -- can be a string | function | false, see "Mouse actions"
+          left_mouse_command = nil, -- can be a string | function, | false see "Mouse actions"
+          middle_mouse_command = nil, -- can be a string | function, | false see "Mouse actions"
+          indicator = {
+            icon = "▎", -- this should be omitted if indicator style is not 'icon'
+            style = "icon",
+          },
+          buffer_close_icon = "󰅖",
+          modified_icon = "●",
+          close_icon = " ",
+          left_trunc_marker = " ",
+          right_trunc_marker = " ",
+          max_name_length = 18,
+          max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
+          truncate_names = true, -- whether or not tab names should be truncated
+          tab_size = 18,
+          diagnostics = false,
+          diagnostics_update_in_insert = false, -- only applies to coc
+          diagnostics_update_on_event = false, -- use nvim's diagnostic handler
+          -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
+          offsets = {
+            {
+              filetype = "NvimTree",
+              text = "File Explorer",
+              text_align = "center",
+              separator = true,
+            },
+          },
+          color_icons = true, -- whether or not to add the filetype icon highlights
+          show_buffer_icons = true, -- disable filetype icons for buffers
+          show_buffer_close_icons = false,
+          show_close_icon = false,
+          show_tab_indicators = true,
+          show_duplicate_prefix = false, -- whether to show duplicate buffer prefix
+          duplicates_across_groups = true, -- whether to consider duplicate paths in different groups as duplicates
+          persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+          move_wraps_at_ends = false, -- whether or not the move command "wraps" at the first or last position
+          -- can also be a table containing 2 custom separators
+          -- [focused and unfocused]. eg: { '|', '|' }
+          separator_style = {},
+          enforce_regular_tabs = true,
+          always_show_bufferline = true,
+          auto_toggle_bufferline = true,
+          hover = {
+            enabled = false,
+            delay = 200,
+            reveal = { "close" },
+          },
+          sort_by = "insert_at_end",
+          pick = {
+            alphabet = "abcdefghijklmopqrstuvwxyzABCDEFGHIJKLMOPQRSTUVWXYZ1234567890",
+          },
+        },
+      })
+    end,
+  },
+
   -- A blazing fast and easy to configure Neovim statusline.
   {
     "nvim-lualine/lualine.nvim",
@@ -33,9 +105,9 @@ return {
         always_divide_middle = true,
         globalstatus = vim.o.laststatus == 3,
         refresh = {
-          statusline = 1000,
-          tabline = 1000,
-          winbar = 1000,
+          statusline = 100,
+          tabline = 100,
+          winbar = 100,
         },
       },
       sections = {
@@ -114,39 +186,9 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
-      tabline = {
-        lualine_a = {
-          {
-            "buffers",
-            show_filename_only = true, -- Shows shortened relative path when set to false.
-            hide_filename_extension = false, -- Hide filename extension when set to true.
-            show_modified_status = true, -- Shows indicator when the buffer is modified.
-            mode = 0, -- 0: Shows buffer name
-            max_length = vim.o.columns * 2 / 3, -- Maximum width of buffers component,
-            -- Automatically updates active buffer color to match color of other components (will be overidden if buffers_color is set)
-            use_mode_colors = true,
-            symbols = {
-              modified = " ●", -- Text to show when the buffer is modified
-              alternate_file = "# ", -- Text to show to identify the alternate file
-              directory = " ", -- Text to show when the buffer is a directory
-            },
-          },
-        },
-        lualine_z = {
-          {
-            "tabs",
-            tab_max_length = 40, -- Maximum width of each tab. The content will be shorten dynamically (example: apple/orange -> a/orange)
-            max_length = vim.o.columns / 3, -- Maximum width of tabs component.
-            -- Note:
-            -- It can also be a function that returns
-            -- the value of `max_length` dynamically.
-            mode = 0, -- 0: Shows tab_nr
-            -- Automatically updates active tab color to match color of other components (will be overidden if buffers_color is set)
-            use_mode_colors = true,
-            show_modified_status = true, -- Shows a symbol next to the tab name if the file has been modified.
-          },
-        },
-      },
+      tabline = {},
+      winbar = {},
+      inactive_winbar = {},
       extensions = { "nvim-tree", "lazy" },
     },
     config = function(_, opts)
