@@ -25,19 +25,17 @@ return {
         completion = {
           completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
         },
+        preselect = cmp.PreselectMode.Item or cmp.PreselectMode.None,
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
           end,
         },
-        window = {
-          completion = cmp.config.window.bordered({ border = RVimOptions.border }),
-          documentation = cmp.config.window.bordered({ border = RVimOptions.border }),
-        },
-        preselect = cmp.PreselectMode.Item or cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
-          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<CR>"] = require("rvim.util").cmp.confirm({ select = auto_select }),
           ["<C-y>"] = require("rvim.util").cmp.confirm({ select = true }),
@@ -99,6 +97,10 @@ return {
             })[entry.source.name]
             return item
           end,
+        },
+        window = {
+          completion = cmp.config.window.bordered({ border = RVimOptions.border }),
+          documentation = cmp.config.window.bordered({ border = RVimOptions.border }),
         },
         experimental = {
           ghost_text = {
@@ -200,6 +202,7 @@ return {
 
   -- Manage libuv types with lazy. Plugin will never be loaded
   { "Bilal2453/luvit-meta", lazy = true },
+
   -- Add lazydev source to cmp
   {
     "hrsh7th/nvim-cmp",
